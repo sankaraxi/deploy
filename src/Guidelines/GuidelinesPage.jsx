@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import './SystemCheck.css';
+import './systemcheck.css';
 import EnvironmentSetup from './EnvironmentSetup.png'
 import configuration from './configuration.png'
 import ribbon from './ribbon.png'
