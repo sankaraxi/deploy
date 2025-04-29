@@ -18,7 +18,7 @@ export default function Menu() {
     if (emails === "") {
       alert("Please provide an email ID");
     } else {
-      axios.post("http://localhost:5001/api/text-mail", key).then((res) => {
+      axios.post("http://192.168.253.187:5001/api/text-mail", key).then((res) => {
         if (res.data.message === "Mail send") {
           alert("Mail sent successfully");
           window.location.reload();
@@ -43,7 +43,7 @@ export default function Menu() {
     
     // try {
     //     const userId = localStorage.getItem("userId");
-    //   const res = await fetch("http://localhost:5001/api/logout", {
+    //   const res = await fetch("http://192.168.253.187:5001/api/logout", {
     //     method: "POST",
     //     headers: {
     //       "Content-Type": "application/json",
