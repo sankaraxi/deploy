@@ -16,7 +16,7 @@ export default function Login(){
             alert("Please Enter the Password")
         }
         else{
-            axios.post("http://192.168.253.187:5001/api/login",key)
+            axios.post("http://localhost:5001/api/login",key)
             .then((res)=>{
                 localStorage.setItem("userId", res.data.id)
                 localStorage.setItem("userRole", res.data.role)

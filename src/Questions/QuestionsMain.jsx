@@ -5,7 +5,7 @@ import A1L1Q02Question from "./A1L1Q2Question";
 import A1L1Q01Question from "./A1L1Q1Question";
 
 export default function QuestionsMain() {
-    var { id } = useParams();
+    var { id, empNo } = useParams();
     const [testdata, setTestdata] = useState([]);
     const [htmlContent, setHtmlContent] = useState('');
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -39,7 +39,7 @@ export default function QuestionsMain() {
         navigate("/"); // Kick 'em out
         }
 
-        fetch("http://192.168.253.187:5001/api/getquestionbyid")
+        fetch("http://localhost:5001/api/getquestionbyid")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Question not found");
@@ -55,7 +55,7 @@ export default function QuestionsMain() {
                 setError(err.message);
             });
         
-        fetch("http://192.168.253.187:5001/api/getquestion")
+        fetch("http://localhost:5001/api/getquestion")
             .then(res => res.json())
             .then((data) => {
                 setHtmlContent(data[0].context);
@@ -78,7 +78,7 @@ export default function QuestionsMain() {
 
     // const runScript = async () => {
     //     try {
-    //         const response = await fetch('http://192.168.253.187:5001/api/run-script', {
+    //         const response = await fetch('http://localhost:5001/api/run-script', {
     //             method: 'POST',
     //             headers: {
     //                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export default function QuestionsMain() {
 
     // const handleStartAssessment = async () => {
     //     try {
-    //       const res = await fetch('http://192.168.253.187:5001/api/run-script', { method: 'POST' });
+    //       const res = await fetch('http://localhost:5001/api/run-script', { method: 'POST' });
     //       const data = await res.json();
     //       console.log('Script output:', data.stdout);
     //       alert('Assessment started!');
@@ -123,7 +123,7 @@ export default function QuestionsMain() {
         }, 1000);
 
         try {
-            const res = await fetch('http://192.168.253.187:5001/api/run-script', 
+            const res = await fetch('http://localhost:5001/api/run-script', 
                 {
                     method: 'POST',
                     headers: {
@@ -131,6 +131,7 @@ export default function QuestionsMain() {
                     },
                     body: JSON.stringify({
                       userId: userId,
+                      empNo: empNo,
                       userName: userName,
                       question: userQuestion,
                     framework: selectedFramework

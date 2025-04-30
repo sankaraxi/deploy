@@ -61,7 +61,7 @@ export default function CodeMenu() {
             if(userRole === '3' || userRole === '4'){
                 if(userQuestion === 'a1l1q3'){
                     try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
+                        const response = await fetch('http://localhost:5001/api/run-Assesment', {
                             method: 'POST',
                             headers: {
                             'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export default function CodeMenu() {
                       }
                 }else if(userQuestion === 'a1l1q2'){
                     try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
+                        const response = await fetch('http://localhost:5001/api/run-Assesment-2', {
                             method: 'POST',
                             headers: {
                             'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ export default function CodeMenu() {
                       }
                 }else if(userQuestion === 'a1l1q1'){
                     try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
+                        const response = await fetch('http://localhost:5001/api/run-Assesment-1', {
                             method: 'POST',
                             headers: {
                             'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ export default function CodeMenu() {
       
           const handleTimeoutCleanup = async () => {
             try {
-                const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+                const response = await fetch('http://localhost:5001/api/cleanup-docker-2', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ export default function CodeMenu() {
     
     //     // try {
     //     //     const userId = localStorage.getItem("userId");
-    //     //   const res = await fetch("http://192.168.253.187:5001/api/logout", {
+    //     //   const res = await fetch("http://localhost:5001/api/logout", {
     //     //     method: "POST",
     //     //     headers: {
     //     //       "Content-Type": "application/json",
@@ -262,7 +262,7 @@ export default function CodeMenu() {
 
 //     const handleLogout = async () => {
 //         try {
-//             const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker', {
+//             const response = await fetch('http://localhost:5001/api/cleanup-docker', {
 //                 method: 'POST',
 //                 headers: {
 //                   'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ export default function CodeMenu() {
 
 // const handleLogout = async () => {
 //     try {
-//        const response =  await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+//        const response =  await fetch('http://localhost:5001/api/cleanup-docker-2', {
 //             method: 'POST',
 //             headers: {
 //               'Content-Type': 'application/json',
@@ -311,7 +311,7 @@ export default function CodeMenu() {
 
 const handleLogout = async () => {
     try {
-      const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+      const response = await fetch('http://localhost:5001/api/cleanup-docker-2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -365,7 +365,7 @@ const handleLogout = async () => {
             setIsSubmitting(true)   
             if(userQuestion === 'a1l1q3'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -403,7 +403,7 @@ const handleLogout = async () => {
                   }
             }else if(userQuestion === 'a1l1q2'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment-2', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -442,7 +442,7 @@ const handleLogout = async () => {
                   }
             }else if(userQuestion === 'a1l1q1'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment-1', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -485,7 +485,7 @@ const handleLogout = async () => {
             
         } else if (userRole === '5'){
             try {
-                const response = await fetch('http://192.168.253.187:5001/api/run-a10l10-Assesment', {
+                const response = await fetch('http://localhost:5001/api/run-a10l10-Assesment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

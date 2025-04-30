@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import './systemcheck.css';
 import EnvironmentSetup from './EnvironmentSetup.png'
@@ -8,7 +8,102 @@ import guide from './guide_18823709.png'
 export default function GuidelinesPage() {
   const { id } = useParams();
 
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [employeeNo, setEmployeeNo] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    employeeNo: ''
+  });
+  const [error, setError] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.employeeNo) {
+      setError('Please fill in all fields');
+      return;
+    }
+    if(formData.employeeNo){
+      setEmployeeNo(formData.employeeNo);
+    }
+    try {
+      const response = await fetch('http://localhost:5001/api/candidate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: id,
+          ...formData
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsModalOpen(false);
+        setError('');
+      } else {
+        setError(data.error || 'Failed to submit data. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
   return (
+
+    <>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">Candidate Information</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-gray-700 mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="employeeNo" className="block text-gray-700 mb-2">Roll/Employee No</label>
+                <input
+                  type="text"
+                  id="employeeNo"
+                  name="employeeNo"
+                  value={formData.employeeNo}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+              <div className="flex justify-end gap-4">
+                <button
+                  type="submit"
+                  className="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md mt-10">
       <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 headingcolor">
         Candidate Instructions – Front-End Assessment (Pre-Test Notes)
@@ -92,12 +187,13 @@ export default function GuidelinesPage() {
       </section>
 
       <div className="mt-4">
-        <Link to={`/user/${id}`}>
+        <Link to={`/user/${id}/${employeeNo}`}>
           <button className="w-full bg-green-600 text-white py-3 px-6 rounded-md shadow hover:bg-green-700 transition duration-200">
             Start Assessment
           </button>
         </Link>
       </div>
     </div>
+    </>
   );
 }
