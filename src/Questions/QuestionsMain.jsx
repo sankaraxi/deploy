@@ -122,8 +122,14 @@ export default function QuestionsMain() {
                   }
             );
             const data = await res.json();
-            console.log('Script output:', data.stdout);
-            alert('Assessment started!');
+
+            if (res.ok && data.status === 'success') {
+                console.log('Script output:', data.output);  // Use `data.output` based on backend structure
+                setRedirectCountdown(0)
+              } else {
+                console.warn('Backend responded with error:', data);
+                alert('Script failed to start the assessment.');
+              }
           } catch (err) {
             console.error(err);
             alert('Something went wrong xstarting the assessment.');
