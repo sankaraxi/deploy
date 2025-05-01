@@ -41,7 +41,7 @@ export default function GuidelinesPage() {
         setEmployeeNo(formData.employeeNo);
       }
       try {
-        const response = await fetch('http://localhost:5001/api/candidate', {
+        const response = await fetch('http://192.168.253.187:5001/api/candidate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
