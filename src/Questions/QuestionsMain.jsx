@@ -5,7 +5,8 @@ import A1L1Q02Question from "./A1L1Q2Question";
 import A1L1Q01Question from "./A1L1Q1Question";
 
 export default function QuestionsMain() {
-    var { id, empNo } = useParams();
+    const { encrypted } = useParams();
+    const {id, empNo, dockerPort, outputPort} = JSON.parse(atob(encrypted));
     const [testdata, setTestdata] = useState([]);
     const [htmlContent, setHtmlContent] = useState('');
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -22,6 +23,8 @@ export default function QuestionsMain() {
     const userQuestion = localStorage.getItem("userQues");
     const navigate = useNavigate();
 
+    const dPort = (reactOrVue === "react" ? +dockerPort : +dockerPort + 1).toString()
+    const oPort = (reactOrVue === "react" ? +outputPort : +outputPort + 1).toString()
 
     console.log(reactOrVue)
     useEffect(() => {
@@ -38,28 +41,6 @@ export default function QuestionsMain() {
         } else {
         navigate("/"); // Kick 'em out
         }
-
-        fetch("http://192.168.253.187:5001/api/getquestionbyid")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Question not found");
-                }
-                console.log(response);
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setQuestion(data.question);
-            })
-            .catch((err) => {
-                setError(err.message);
-            });
-        
-        fetch("http://192.168.253.187:5001/api/getquestion")
-            .then(res => res.json())
-            .then((data) => {
-                setHtmlContent(data[0].context);
-            });
 
         if (timeLeft > 0) {
             const timer = setTimeout(() => {
@@ -134,7 +115,9 @@ export default function QuestionsMain() {
                       empNo: empNo,
                       userName: userName,
                       question: userQuestion,
-                    framework: selectedFramework
+                    framework: selectedFramework,
+                    dockerPort: dPort,
+                    outputPort: oPort,
                     }),
                   }
             );

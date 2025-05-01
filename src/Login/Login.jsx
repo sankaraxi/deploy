@@ -27,6 +27,7 @@ export default function Login(){
                 if(res.data.status==="success"){
                     var role=res.data.role;
                     var id=res.data.id;
+                    var empNo =res.data.empNo;
                     if(role===1){
                         window.location.href=`/admin`
                     }
@@ -37,7 +38,7 @@ export default function Login(){
                         window.location.href=`/systemcheck/${id}`
                     }
                     else if(role===4){
-                        window.location.href=`/guidelines/${id}`
+                        window.location.href=`/guidelines/${id}/${empNo}`
                     }
                     else if(role===5){
                         window.location.href=`/systemcheck/${id}`

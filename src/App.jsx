@@ -49,9 +49,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>}/>
-        <Route path='/guidelines/:id' element={[<Menu/>,<GuidelinesPage/>]}/>
+        <Route path='/guidelines/:id/:empNo' element={[<Menu/>,<GuidelinesPage/>]}/>
         
-        <Route path='/user/:id/:empNo' element={[<Menu/>,<QuestionsMain/>]}/>
+        <Route path='/question/:encrypted' element={[<Menu/>,<QuestionsMain/>]}/>
         <Route path='/workspace/:id/:framework' element={[<CodeMenu/>,<CodeEditor />]}/>
         {/* <Route path='/question_creator/:id' element={[<Menu/>,<Corepage/>]}/> */}
         {/* <Route path='/' element={<Download/>}/> */}
