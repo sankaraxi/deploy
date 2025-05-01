@@ -125,7 +125,7 @@ export default function QuestionsMain() {
 
             if (res.ok && data.status === 'success') {
                 console.log('Script output:', data.output);  // Use `data.output` based on backend structure
-                setRedirectCountdown(0)
+                window.location.href = `/workspace/${id}/${selectedFramework}`;
               } else {
                 console.warn('Backend responded with error:', data);
                 alert('Script failed to start the assessment.');
