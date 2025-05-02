@@ -43,7 +43,7 @@ export default function CodeEditor() {
   function renderContent() {
     if (id === "8") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8080/?folder=/home/coder/project'
@@ -101,7 +101,7 @@ export default function CodeEditor() {
       );
     }else if (id === "7") {
         return (
-          <div className="relative h-[625px]">
+          <div className="relative h-[630px]">
             {framework === "react" ? (
                 <iframe
                 src='http://192.168.253.187:8082/?folder=/home/coder/project'
@@ -160,7 +160,7 @@ export default function CodeEditor() {
         );
     }else if (id === "6") {
         return (
-          <div className="relative h-[625px]">
+          <div className="relative h-[630px]">
             {framework === "react" ? (
                 <iframe
                 src='http://192.168.253.187:8084/?folder=/home/coder/project'
@@ -218,7 +218,7 @@ export default function CodeEditor() {
         )
     }else if (id === "9") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8086/?folder=/home/coder/project'
@@ -276,7 +276,7 @@ export default function CodeEditor() {
       )
     }else if (id === "10") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8088/?folder=/home/coder/project'
@@ -334,7 +334,7 @@ export default function CodeEditor() {
       )
     }else if (id === "11") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8090/?folder=/home/coder/project'
@@ -392,7 +392,7 @@ export default function CodeEditor() {
       )
     }else if (id === "12") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8092/?folder=/home/coder/project'
@@ -450,7 +450,7 @@ export default function CodeEditor() {
       )
     }else if (id === "13") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8094/?folder=/home/coder/project'
@@ -508,7 +508,7 @@ export default function CodeEditor() {
       )
     }else if (id === "14") {
       return (
-        <div className="relative h-[625px]">
+        <div className="relative h-[630px]">
           {framework === "react" ? (
               <iframe
               src='http://192.168.253.187:8096/?folder=/home/coder/project'
@@ -570,7 +570,7 @@ export default function CodeEditor() {
   }
 
     return (
-        <div className="relative h-[625px]"> {/* 👈 height added */}
+        <div className="relative h-[630px]"> {/* 👈 height added */}
 
 
 

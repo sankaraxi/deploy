@@ -56,156 +56,6 @@ export default function CodeMenu() {
     }, [isModalClosing]);
 
     useEffect(() => {
-        if (timeLeft === 0) {
-          const handleTimeoutSubmit = async () => {
-            if(userRole === '3' || userRole === '4'){
-                if(userQuestion === 'a1l1q3'){
-                    try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                          ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
-                          }
-                          
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
-                        }
-                      }
-                }else if(userQuestion === 'a1l1q2'){
-                    try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                          ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
-                          }
-                          
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
-                        }
-                      }
-                }else if(userQuestion === 'a1l1q1'){
-                    try {
-                        const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                          ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
-                          }
-                          
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
-                        }
-                      }
-                }
-            }
-          };
-      
-          const handleTimeoutCleanup = async () => {
-            try {
-                const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    userId: userId, // Ensure userId is defined in the scope
-                  }),
-                });
-            
-                // Check if the response is successful
-                if (!response.ok) {
-                  throw new Error(`Server responded with status ${response.status}`);
-                }
-            
-                // Parse the response
-                const data = await response.json();
-                if (data.status !== 'success') {
-                  throw new Error(data.error || 'Docker cleanup failed');
-                }
-            
-                // Clear localStorage and redirect
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('examEndTime');
-                window.location.href = '/'; // Redirect to login page
-              } catch (error) {
-                console.error('Failed to clean up Docker:', error);
-                // Proceed with logout even if the server request fails
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('examEndTime');
-                window.location.href = '/'; // Redirect to login page
-                alert('Docker cleanup failed. Please check the server logs, but you have been logged out.');
-              }
-          };
-      
-          handleTimeoutSubmit();
-          handleTimeoutCleanup();
-        }
-      
         const intervalId = setInterval(() => {
           setTimeLeft(prev => {
             if (prev <= 1) {
@@ -217,8 +67,158 @@ export default function CodeMenu() {
         }, 1000);
       
         return () => clearInterval(intervalId);
-      }, [timeLeft]);
+      }, []);
       
+      useEffect(() => {
+        if (timeLeft === 0) {
+            const handleTimeoutSubmit = async () => {
+              if(userRole === '3' || userRole === '4'){
+                  if(userQuestion === 'a1l1q3'){
+                      try {
+                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
+                        }
+                  }else if(userQuestion === 'a1l1q2'){
+                      try {
+                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
+                        }
+                  }else if(userQuestion === 'a1l1q1'){
+                      try {
+                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
+                        }
+                  }
+              }
+            };
+        
+            const handleTimeoutCleanup = async () => {
+              try {
+                  const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      userId: userId, // Ensure userId is defined in the scope
+                    }),
+                  });
+              
+                  // Check if the response is successful
+                  if (!response.ok) {
+                    throw new Error(`Server responded with status ${response.status}`);
+                  }
+              
+                  // Parse the response
+                  const data = await response.json();
+                  if (data.status !== 'success') {
+                    throw new Error(data.error || 'Docker cleanup failed');
+                  }
+              
+                  // Clear localStorage and redirect
+                  localStorage.removeItem('userRole');
+                  localStorage.removeItem('examEndTime');
+                  window.location.href = '/'; // Redirect to login page
+                } catch (error) {
+                  console.error('Failed to clean up Docker:', error);
+                  // Proceed with logout even if the server request fails
+                  localStorage.removeItem('userRole');
+                  localStorage.removeItem('examEndTime');
+                  window.location.href = '/'; // Redirect to login page
+                }
+            };
+        
+            handleTimeoutSubmit();
+            handleTimeoutCleanup();
+          }
+      }, [timeLeft]);
     
 
     const hours = Math.floor(timeLeft / 3600);
@@ -342,7 +342,6 @@ const handleLogout = async () => {
       localStorage.removeItem('userRole');
       localStorage.removeItem('examEndTime');
       window.location.href = '/'; // Redirect to login page
-      alert('Docker cleanup failed. Please check the server logs, but you have been logged out.');
     }
   };
 
@@ -466,6 +465,7 @@ const handleLogout = async () => {
                       if(data.detailedResults){
                         setIsSubmitting(false)
                         setDetailedResults(data.detailedResults)
+                        console.log('detailedResults:', data.detailedResults);
                       }
                       
             
@@ -743,7 +743,6 @@ const handleLogout = async () => {
                                 <div 
                                     className="flex items-center justify-between p-4 cursor-pointer"
                                     onClick={() => {
-                                        // You'll need to implement toggle functionality
                                         document.getElementById(`accordion-${index}`).classList.toggle('hidden');
                                         document.getElementById(`chevron-${index}`).classList.toggle('rotate-180');
                                     }}
@@ -789,6 +788,8 @@ const handleLogout = async () => {
                                             <thead className="bg-gray-100">
                                                 <tr>
                                                     <th className="py-3 px-4 text-left font-semibold text-gray-700">Test Case</th>
+                                                    <th className="py-3 px-4 text-left font-semibold text-gray-700">Selector</th>
+                                                    <th className="py-3 px-4 text-left font-semibold text-gray-700">Property</th>
                                                     <th className="py-3 px-4 text-center font-semibold text-gray-700 w-24">Status</th>
                                                 </tr>
                                             </thead>
@@ -796,6 +797,12 @@ const handleLogout = async () => {
                                                 {groupedResults[category].map((result, resultIndex) => (
                                                     <tr key={resultIndex} className="hover:bg-gray-50">
                                                         <td className="py-3 px-4 text-sm">{result.name}</td>
+                                                        <td className="py-3 px-4 text-sm font-mono text-blue-600">
+                                                            {result.ReviewDetails?.selector || '-'}
+                                                        </td>
+                                                        <td className="py-3 px-4 text-sm font-mono text-green-600">
+                                                            {result.ReviewDetails?.property || '-'}
+                                                        </td>
                                                         <td className="py-3 px-4 text-center">
                                                             {result.score > 0 ? (
                                                                 <span className="inline-flex items-center px-2.5 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">

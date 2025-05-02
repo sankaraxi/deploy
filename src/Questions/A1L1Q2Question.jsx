@@ -1,3 +1,4 @@
+
 import React from "react";
 
 export default function A1L1Q02Question() {
@@ -7,90 +8,132 @@ export default function A1L1Q02Question() {
 
       <h2 className="text-xl font-semibold mb-2">Objective:</h2>
       <p className="mb-4">
-        You are required to build a simple responsive <strong>Technology Grid Showcase Page</strong> using HTML and CSS (JavaScript is optional) that visually aligns with the layout and behavior described below. Your implementation will be evaluated against a defined set of layout, styling, and responsiveness criteria.
+        Build a simple responsive <strong>Technology Grid Showcase Page</strong> using HTML and CSS.
+        Your layout should visually display technology cards in a clean, responsive grid with icons and titles,
+        and meet defined visual and semantic requirements.
       </p>
+
       <div>
-        <img src="/a1l1q2_img.jpeg" alt="Technology Grid Page Example" className="w-full mb-4" />
+        <img src="/a1l1q2_img.png" alt="Product Grid Page Example" className="w-full mb-4" />
       </div>
 
-      <h3 className="font-semibold text-lg mt-6 mb-2">Task Requirements:</h3>
-      <ul className="list-disc pl-6 space-y-2">
-        <li>Create a clean and responsive technology section that displays technology cards/icons in a grid layout. Use placeholder images or SVGs to represent technologies.</li>
-        <li>Each card should contain:
-          <ul className="list-disc pl-6">
-            <li>A fixed-size technology icon/image</li>
-            <li>A technology name/title</li>
-          </ul>
-        </li>
+      <h2 className="text-xl font-semibold mb-2">Expected Output:</h2>
+      <ul className="list-disc pl-6 space-y-2 mb-4">
+        <li>Grid layout of technology cards</li>
+        <li>Each card with an image/icon and title</li>
+        <li>Fully responsive grid layout that adapts to screen sizes</li>
       </ul>
 
-      <h3 className="font-semibold text-lg mt-6 mb-2">CSS Styling Rules:</h3>
-      <ul className="list-disc pl-6 space-y-2">
-        <li><strong>Grid Container:</strong>
-          <ul className="list-disc pl-6">
-            <li>Use CSS Grid layout for the technology section (<code>display: grid</code>)</li>
-            <li>Set the grid to adjust dynamically, maintaining a minimum card width around <code>200px</code></li>
-            <li>Gap between grid items: around <code>1.5rem</code></li>
-            <li>Responsive layout: collapses to fewer columns on smaller screens</li>
-          </ul>
-        </li>
-        <li><strong>Card:</strong>
-          <ul className="list-disc pl-6">
-            <li>Soft white background</li>
-            <li>Subtle border-radius</li>
-            <li>Light shadow to lift from background</li>
-            <li>Padding inside card</li>
-            <li>Hover effect: move upward slightly with smooth transition (<code>transform: translateY(...)</code>)</li>
-          </ul>
-        </li>
-        <li><strong>Image:</strong>
-          <ul className="list-disc pl-6">
-            <li>Centered both vertically and horizontally</li>
-            <li>Approximately <code>64px × 64px</code>, square-sized, maintain aspect ratio</li>
-            <li>Should not overflow the card</li>
-          </ul>
-        </li>
-        <li><strong>Typography:</strong>
-          <ul className="list-disc pl-6">
-            <li>Titles center-aligned, bold, and spaced from the icon</li>
-            <li>Use modern sans-serif font</li>
-            <li>Optional subtext: lighter and muted color</li>
-          </ul>
-        </li>
-        <li><strong>Page & Wrapper:</strong>
-          <ul className="list-disc pl-6">
-            <li>Main container centered with appropriate max-width</li>
-            <li>Padding: <code>30px</code> vertically and <code>20px</code> horizontally</li>
-            <li>Neutral background color (e.g., light grey)</li>
-          </ul>
-        </li>
-        <li><strong>HTML Semantics:</strong> Use semantic tags like <code>&lt;section&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;figure&gt;</code></li>
-      </ul>
-
-      <h3 className="font-semibold text-lg mt-6 mb-2">✅ Evaluation Checklist:</h3>
+      <h3 className="text-lg font-semibold mb-2">Layout and Style Requirements:</h3>
       <table className="w-full text-sm border border-gray-300 mb-6">
         <thead className="bg-gray-200">
           <tr>
-            <th className="border p-2">Category</th>
-            <th className="border p-2">Criteria</th>
+            <th className="border p-2">Area</th>
+            <th className="border p-2">Selector</th>
+            <th className="border p-2">CSS Property</th>
+            <th className="border p-2">Expected Value</th>
           </tr>
         </thead>
         <tbody>
-          {[
-            ["Layout", "Responsive grid layout with flexible column count and consistent spacing"],
-            ["Styling", "Cards have padding, shadows, rounded corners, hover effects, and image sizing"],
-            ["Responsiveness", "Device responsive"],
-            ["Code Quality", "Clean, semantic HTML structure; reusable and readable CSS"],
-            ["Performance", "Page loads quickly and renders consistently"]
-          ].map(([category, criteria], idx) => (
-            <tr key={idx}>
-              <td className="border p-2 font-medium">{category}</td>
-              <td className="border p-2">{criteria}</td>
-            </tr>
-          ))}
+
+          <tr>
+            <td className="border p-2">container - background color</td>
+            <td className="border p-2">.technologies-container</td>
+            <td className="border p-2">background-color</td>
+            <td className="border p-2">#f3fbff</td>
+          </tr>
+          <tr>
+            <td className="border p-2">container : padding</td>
+            <td className="border p-2">.technologies-container</td>
+            <td className="border p-2">padding</td>
+            <td className="border p-2">40px 20px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">sub-text width</td>
+            <td className="border p-2">.tech-subtext</td>
+            <td className="border p-2">max-width</td>
+            <td className="border p-2">700px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">sub-text margin</td>
+            <td className="border p-2">.tech-subtext</td>
+            <td className="border p-2">margin</td>
+            <td className="border p-2">0 auto 40px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">sub-text padding</td>
+            <td className="border p-2">.tech-card</td>
+            <td className="border p-2">padding</td>
+            <td className="border p-2">20px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">sub-text position</td>
+            <td className="border p-2">.tech-card</td>
+            <td className="border p-2">position</td>
+            <td className="border p-2">relative</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Image width</td>
+            <td className="border p-2">.tech-img</td>
+            <td className="border p-2">width</td>
+            <td className="border p-2">60px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Image Height</td>
+            <td className="border p-2">.tech-img</td>
+            <td className="border p-2">height</td>
+            <td className="border p-2">auto</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Image Display</td>
+            <td className="border p-2">.tech-img</td>
+            <td className="border p-2">display</td>
+            <td className="border p-2">block</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Image Margin</td>
+            <td className="border p-2">.tech-img</td>
+            <td className="border p-2">margin</td>
+            <td className="border p-2">0 auto</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Page Layout with Grid</td>
+            <td className="border p-2">.tech-grid</td>
+            <td className="border p-2">display</td>
+            <td className="border p-2">grid</td>
+          </tr>
+          <tr>
+            <td className="border p-2">CSS Style - Smoothness & Performance</td>
+            <td className="border p-2">.tech-grid</td>
+            <td className="border p-2">gap</td>
+            <td className="border p-2">70px</td>
+          </tr>
+          <tr>
+            <td className="border p-2">Aesthetics Elements</td>
+            <td className="border p-2">.tech-grid</td>
+            <td className="border p-2">justify-content</td>
+            <td className="border p-2">center</td>
+          </tr>
+          <tr>
+            <td className="border p-2">CSS - Structure of a Page - Border Radius</td>
+            <td className="border p-2">.tech-card</td>
+            <td className="border p-2">border-radius</td>
+            <td className="border p-2">12px</td>
+          </tr>
         </tbody>
       </table>
-      
+
+      <h3 className="text-lg font-semibold mb-2">Responsiveness Criteria:</h3>
+      <p className="mb-4">
+        Ensure the grid collapses and adjusts on various screen widths:
+        <code> 1920×1080, 1366×768, 768×1024, 425×800, 375×667 </code>
+      </p>
+
+
+      <h3 className="text-lg font-semibold mb-2">Performance Expectation:</h3>
+      <p>
+        Ensure fast page loading under 1500ms when accessed by 2 concurrent users. Icons and images must be optimized.
+      </p>
     </div>
   );
 }

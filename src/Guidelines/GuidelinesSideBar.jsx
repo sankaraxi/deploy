@@ -36,13 +36,13 @@ const GuidelinesSideBar = () => {
     {
       step: '05',
       title: 'Add Your Code',
-      details: [<>Navigate to the <span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>App.css</span> component to add your code</>],
+      details: [<>Navigate to the <span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>App.css</span> component to add your code</>,<>Also verify the HTML structure in <span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>index.html</span></>],
       image: '/guidelines_image4.png',
     },
     {
       step:'05',
       title: 'To view Instructions',
-      details: [<>Open the <span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>README.md</span> file to view the instructions</>, <>And open<span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>OUTPUT.png</span> file to view the Sample Output. </> ],
+      details: [<>Open the <span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>README.md</span> file to view the instructions</>, <>And open<span className='bg-gray-300 mx-1 font-semibold font-firacode px-1 rounded-md text-red-400'>OUTPUT.png</span> file to view the Sample Output </> ],
       image: '/guidelines_image7.png',
 
     },
