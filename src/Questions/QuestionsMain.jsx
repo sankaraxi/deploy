@@ -17,10 +17,10 @@ export default function QuestionsMain() {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [reactOrVue, setReactOrVue] = useState(null);
 
-    const userRole = localStorage.getItem("userRole");
-    const userId = localStorage.getItem("userId");
-    const userName = localStorage.getItem("userName");
-    const userQuestion = localStorage.getItem("userQues");
+    const userRole = sessionStorage.getItem("userRole");
+    const userId = sessionStorage.getItem("userId");
+    const userName = sessionStorage.getItem("userName");
+    const userQuestion = sessionStorage.getItem("userQues");
     const navigate = useNavigate();
 
     const dPort = (reactOrVue === "react" ? +dockerPort : +dockerPort + 1).toString()
@@ -32,7 +32,7 @@ export default function QuestionsMain() {
     },[])
 
     useEffect(() => {
-        const userRole = localStorage.getItem("userRole");
+        const userRole = sessionStorage.getItem("userRole");
 
         console.log("User role:", userRole);
 
@@ -59,7 +59,7 @@ export default function QuestionsMain() {
 
     // const runScript = async () => {
     //     try {
-    //         const response = await fetch('http://192.168.253.187:5001/api/run-script', {
+    //         const response = await fetch('http://localhost:5001/api/run-script', {
     //             method: 'POST',
     //             headers: {
     //                 'Content-Type': 'application/json',
@@ -75,12 +75,12 @@ export default function QuestionsMain() {
 
     const handleReactOrVue = (e) => {
         setReactOrVue(e.target.value);
-        localStorage.setItem("framework", e.target.value)
+        sessionStorage.setItem("framework", e.target.value)
     };
 
     // const handleStartAssessment = async () => {
     //     try {
-    //       const res = await fetch('http://192.168.253.187:5001/api/run-script', { method: 'POST' });
+    //       const res = await fetch('http://localhost:5001/api/run-script', { method: 'POST' });
     //       const data = await res.json();
     //       console.log('Script output:', data.stdout);
     //       alert('Assessment started!');
@@ -104,7 +104,7 @@ export default function QuestionsMain() {
         }, 1000);
 
         try {
-            const res = await fetch('http://192.168.253.187:5001/api/run-script', 
+            const res = await fetch('http://localhost:5001/api/run-script', 
                 {
                     method: 'POST',
                     headers: {

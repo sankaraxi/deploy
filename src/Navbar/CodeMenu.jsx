@@ -6,13 +6,13 @@ import GuidelinesSideBar from "../Guidelines/GuidelinesSideBar";
 export default function CodeMenu() {
     const { id } = useParams();
     const [timeLeft, setTimeLeft] = useState(() => {
-        const savedEndTime = localStorage.getItem('examEndTime');
+        const savedEndTime = sessionStorage.getItem('examEndTime');
         if (savedEndTime) {
           const diff = Math.floor((new Date(savedEndTime) - new Date()) / 1000);
           return diff > 0 ? diff : 0;
         } else {
           const endTime = new Date(Date.now() + 1800 * 1000); // 30 minutes from now
-          localStorage.setItem('examEndTime', endTime.toISOString());
+          sessionStorage.setItem('examEndTime', endTime.toISOString());
           return 1800;
         }
       });
@@ -25,10 +25,10 @@ export default function CodeMenu() {
     const [showGuidelines, setShowGuidelines] = useState(false);
     const [notRunning, setNotRunning] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const userId = localStorage.getItem("userId");
-    const userRole = localStorage.getItem("userRole");
-    const userQuestion = localStorage.getItem("userQues");
-    const framework = localStorage.getItem("framework");
+    const userId = sessionStorage.getItem("userId");
+    const userRole = sessionStorage.getItem("userRole");
+    const userQuestion = sessionStorage.getItem("userQues");
+    const framework = sessionStorage.getItem("framework");
 
 
     console.log(notRunning);
@@ -55,19 +55,32 @@ export default function CodeMenu() {
         }
     }, [isModalClosing]);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-          setTimeLeft(prev => {
-            if (prev <= 1) {
-              clearInterval(intervalId);
-              return 0;
-            }
-            return prev - 1;
-          });
-        }, 1000);
-      
-        return () => clearInterval(intervalId);
-      }, []);
+    // Timer logic
+  useEffect(() => {
+    const updateTimer = () => {
+      const savedEndTime = sessionStorage.getItem("examEndTime");
+      if (!savedEndTime) {
+        setTimeLeft(0);
+        return;
+      }
+
+      const diff = Math.floor((new Date(savedEndTime) - new Date()) / 1000);
+      if (diff <= 0) {
+        
+        setTimeLeft(0);
+      } else {
+        setTimeLeft(diff);
+      }
+    };
+
+    // Update timer immediately and every second
+    updateTimer();
+    const intervalId = setInterval(updateTimer, 1000);
+
+    // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
       
       useEffect(() => {
         if (timeLeft === 0) {
@@ -75,7 +88,7 @@ export default function CodeMenu() {
               if(userRole === '3' || userRole === '4'){
                   if(userQuestion === 'a1l1q3'){
                       try {
-                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
+                          const response = await fetch('http://localhost:5001/api/run-Assesment', {
                               method: 'POST',
                               headers: {
                               'Content-Type': 'application/json',
@@ -109,7 +122,7 @@ export default function CodeMenu() {
                         }
                   }else if(userQuestion === 'a1l1q2'){
                       try {
-                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
+                          const response = await fetch('http://localhost:5001/api/run-Assesment-2', {
                               method: 'POST',
                               headers: {
                               'Content-Type': 'application/json',
@@ -143,7 +156,7 @@ export default function CodeMenu() {
                         }
                   }else if(userQuestion === 'a1l1q1'){
                       try {
-                          const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
+                          const response = await fetch('http://localhost:5001/api/run-Assesment-1', {
                               method: 'POST',
                               headers: {
                               'Content-Type': 'application/json',
@@ -181,7 +194,7 @@ export default function CodeMenu() {
         
             const handleTimeoutCleanup = async () => {
               try {
-                  const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+                  const response = await fetch('http://localhost:5001/api/cleanup-docker-2', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
@@ -202,15 +215,15 @@ export default function CodeMenu() {
                     throw new Error(data.error || 'Docker cleanup failed');
                   }
               
-                  // Clear localStorage and redirect
-                  localStorage.removeItem('userRole');
-                  localStorage.removeItem('examEndTime');
+                  // Clear sessionStorage and redirect
+                  sessionStorage.removeItem('userRole');
+                  sessionStorage.removeItem('examEndTime');
                   window.location.href = '/'; // Redirect to login page
                 } catch (error) {
                   console.error('Failed to clean up Docker:', error);
                   // Proceed with logout even if the server request fails
-                  localStorage.removeItem('userRole');
-                  localStorage.removeItem('examEndTime');
+                  sessionStorage.removeItem('userRole');
+                  sessionStorage.removeItem('examEndTime');
                   window.location.href = '/'; // Redirect to login page
                 }
             };
@@ -234,8 +247,8 @@ export default function CodeMenu() {
     // const handleLogout = async () => {
     
     //     // try {
-    //     //     const userId = localStorage.getItem("userId");
-    //     //   const res = await fetch("http://192.168.253.187:5001/api/logout", {
+    //     //     const userId = sessionStorage.getItem("userId");
+    //     //   const res = await fetch("http://localhost:5001/api/logout", {
     //     //     method: "POST",
     //     //     headers: {
     //     //       "Content-Type": "application/json",
@@ -245,7 +258,7 @@ export default function CodeMenu() {
     
     //     //   const data = await res.json();
     //     //   if (data.status === "logged_out") {
-    //     //     localStorage.removeItem("userRole");
+    //     //     sessionStorage.removeItem("userRole");
     //     //     alert("Logged out successfully");
     //     //     window.location.href = "/"; // Redirect to login page
     //     //   } else {
@@ -256,13 +269,13 @@ export default function CodeMenu() {
     //     //   alert("Error logging out.");
     //     // }
 
-    //     localStorage.removeItem("userRole");
+    //     sessionStorage.removeItem("userRole");
     //     window.location.href = "/"; // Redirect to login page
     //   }
 
 //     const handleLogout = async () => {
 //         try {
-//             const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker', {
+//             const response = await fetch('http://localhost:5001/api/cleanup-docker', {
 //                 method: 'POST',
 //                 headers: {
 //                   'Content-Type': 'application/json',
@@ -275,8 +288,8 @@ export default function CodeMenu() {
                 
 //             });
 //             console.log("Docker cleanup response:", response);
-//             localStorage.removeItem("userRole");
-//         localStorage.removeItem("examEndTime"); 
+//             sessionStorage.removeItem("userRole");
+//         sessionStorage.removeItem("examEndTime"); 
 //         window.location.href = "/"; // Redirect to login page
             
             
@@ -290,7 +303,7 @@ export default function CodeMenu() {
 
 // const handleLogout = async () => {
 //     try {
-//        const response =  await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+//        const response =  await fetch('http://localhost:5001/api/cleanup-docker-2', {
 //             method: 'POST',
 //             headers: {
 //               'Content-Type': 'application/json',
@@ -299,8 +312,8 @@ export default function CodeMenu() {
 //               userId: userId
 //             })    
 //         });
-//         localStorage.removeItem("userRole");
-//     localStorage.removeItem("examEndTime"); 
+//         sessionStorage.removeItem("userRole");
+//     sessionStorage.removeItem("examEndTime"); 
 //     window.location.href = "/"; // Redirect to login page
 //       } catch (error) {
 //         console.error("Failed to clean up Docker:", error);
@@ -311,7 +324,7 @@ export default function CodeMenu() {
 
 const handleLogout = async () => {
     try {
-      const response = await fetch('http://192.168.253.187:5001/api/cleanup-docker-2', {
+      const response = await fetch('http://localhost:5001/api/cleanup-docker-2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -332,15 +345,15 @@ const handleLogout = async () => {
         throw new Error(data.error || 'Docker cleanup failed');
       }
   
-      // Clear localStorage and redirect
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('examEndTime');
+      // Clear sessionStorage and redirect
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('examEndTime');
       window.location.href = '/'; // Redirect to login page
     } catch (error) {
       console.error('Failed to clean up Docker:', error);
       // Proceed with logout even if the server request fails
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('examEndTime');
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('examEndTime');
       window.location.href = '/'; // Redirect to login page
     }
   };
@@ -364,7 +377,7 @@ const handleLogout = async () => {
             setIsSubmitting(true)   
             if(userQuestion === 'a1l1q3'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -402,7 +415,7 @@ const handleLogout = async () => {
                   }
             }else if(userQuestion === 'a1l1q2'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-2', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment-2', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -441,7 +454,7 @@ const handleLogout = async () => {
                   }
             }else if(userQuestion === 'a1l1q1'){
                 try {
-                    const response = await fetch('http://192.168.253.187:5001/api/run-Assesment-1', {
+                    const response = await fetch('http://localhost:5001/api/run-Assesment-1', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -485,7 +498,7 @@ const handleLogout = async () => {
             
         } else if (userRole === '5'){
             try {
-                const response = await fetch('http://192.168.253.187:5001/api/run-a10l10-Assesment', {
+                const response = await fetch('http://localhost:5001/api/run-a10l10-Assesment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -519,9 +532,7 @@ const handleLogout = async () => {
     return (
         <>
             <nav className="bg-[#291571] px-20 sticky top-0 z-10 flex justify-between items-center">
-                <div className="px-2 md:px-6">
-                    <img src="/kgglwhitelogo.png" className="w-20 md:w-24" alt="Logo" />
-                </div>
+                <div className="w-20  md:w-24 md:h-20" />
                 
                 {/* Hamburger menu for mobile */}
                 <div className="block lg:hidden">

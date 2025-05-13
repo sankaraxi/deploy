@@ -82,7 +82,7 @@ export default function A1L1Q02Question() {
             <td className="border p-2">Image Height</td>
             <td className="border p-2">.tech-img</td>
             <td className="border p-2">height</td>
-            <td className="border p-2">auto</td>
+            <td className="border p-2">60px</td>
           </tr>
           <tr>
             <td className="border p-2">Image Display</td>
@@ -122,6 +122,13 @@ export default function A1L1Q02Question() {
           </tr>
         </tbody>
       </table>
+
+
+      <h3 className="text-lg font-semibold mb-2">React Component Rendering:</h3>
+      <p className="mb-4">
+        Create a <code>label</code> tag at the bottom of the screen which contains <code>Designed and Developed by YOUR_NAME</code> text.
+        You can write your code in <code>App.jsx</code> or <code>App.vue</code> file.
+      </p>
 
       <h3 className="text-lg font-semibold mb-2">Responsiveness Criteria:</h3>
       <p className="mb-4">

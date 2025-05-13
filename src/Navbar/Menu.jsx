@@ -6,6 +6,7 @@ export default function Menu() {
   const { id } = useParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [inviteModalOpen, setInviteModalOpen] = useState(false);
+  const userId = sessionStorage.getItem("userId");
 
   function handleInvite(event) {
     event.preventDefault();
@@ -18,7 +19,7 @@ export default function Menu() {
     if (emails === "") {
       alert("Please provide an email ID");
     } else {
-      axios.post("http://192.168.253.187:5001/api/text-mail", key).then((res) => {
+      axios.post("http://localhost:5001/api/text-mail", key).then((res) => {
         if (res.data.message === "Mail send") {
           alert("Mail sent successfully");
           window.location.reload();
@@ -40,41 +41,45 @@ export default function Menu() {
 
 
   const handleLogout = async () => {
-    
-    // try {
-    //     const userId = localStorage.getItem("userId");
-    //   const res = await fetch("http://192.168.253.187:5001/api/logout", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ userId }),
-    //   });
-
-    //   const data = await res.json();
-    //   if (data.status === "logged_out") {
-    //     localStorage.removeItem("userRole");
-    //     alert("Logged out successfully");
-    //     window.location.href = "/"; // Redirect to login page
-    //   } else {
-    //     alert("Logout failed: " + (data.message || ""));
-    //   }
-    // } catch (err) {
-    //   console.error("Logout error:", err);
-    //   alert("Error logging out.");
-    // }
-
-    localStorage.removeItem("userRole");
-    window.location.href = "/"; // Redirect to login page
-  }
-
+    try {
+      const response = await fetch('http://localhost:5001/api/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: userId, // Ensure userId is defined in the scope
+        }),
+      });
+  
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+  
+      // Parse the response
+      const data = await response.json();
+      if (data.status !== 'success') {
+        throw new Error(data.error || 'Docker cleanup failed');
+      }
+  
+      // Clear sessionStorage and redirect
+      sessionStorage.removeItem('userRole');
+      window.location.href = '/'; // Redirect to login page
+    } catch (error) {
+      console.error('Failed to clean up Docker:', error);
+      // Proceed with logout even if the server request fails
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('examEndTime');
+      window.location.href = '/'; // Redirect to login page
+    }
+  };
   return (
     <>
       <nav className="bg-[#291571] sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between">
-          <a href="#" className="">
-            <img src="/kgglwhitelogo.png" className="w-20 md:w-24" alt="Logo" />
-          </a>
+          {/* Invisible spacer to preserve logo space and alignment */}
+          <div className="w-20  md:w-24 md:h-20" />
           
           {/* Mobile menu button */}
           <button 
@@ -105,14 +110,12 @@ export default function Menu() {
             <div className="flex flex-col space-y-3">
               {/* Additional mobile navigation links can go here */}
               
-              <Link to="/" className="w-full">
-                <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-300 shadow-md flex items-center justify-center font-medium w-full">
+                <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-300 shadow-md flex items-center justify-center font-medium w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
                   Logout
                 </button>
-              </Link>
             </div>
           </div>
         )}

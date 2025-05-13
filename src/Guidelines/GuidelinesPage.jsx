@@ -8,8 +8,8 @@ import guide from './guide_18823709.png';
 
 export default function GuidelinesPage() {
   const { id } = useParams();
-  const dockerPort = localStorage.getItem("dockerPort");
-  const outputPort = localStorage.getItem("outputPort");
+  const dockerPort = sessionStorage.getItem("dockerPort");
+  const outputPort = sessionStorage.getItem("outputPort");
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [employeeNo, setEmployeeNo] = useState('');
   const [formData, setFormData] = useState({
@@ -41,7 +41,7 @@ export default function GuidelinesPage() {
         setEmployeeNo(formData.employeeNo);
       }
       try {
-        const response = await fetch('http://192.168.253.187:5001/api/candidate', {
+        const response = await fetch('http://localhost:5001/api/candidate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

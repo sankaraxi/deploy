@@ -36,14 +36,13 @@ export default function A1L1Q01Question() {
         </thead>
         <tbody>
           {[
-            ["Card Background", ".backgroundpart", "min-height", "100vh"],
+            ["Card Background", ".backgroundpart", "padding", "20px"],
             ["Card Layout", ".backgroundpart", "display", "flex"],
             ["Card Alignment (Horizontal)", ".backgroundpart", "justify-content", "center"],
             ["Card Alignment (Vertical)", ".backgroundpart", "align-items", "center"],
             ["Card Rounded Corners", ".contentcard", "border-radius", "15px"],
             ["Card Padding", ".contentcard", "padding", "30px 20px"],
             ["Card Max Width", ".contentcard", "max-width", "400px"],
-            ["Card Width", ".contentcard", "width", "100%"],
             ["Card Text Alignment", ".contentcard", "text-align", "center"],
             ["Card Background Color", ".contentcard", "background-color", "#e6f9fc"],
             ["Profile Picture Width", ".profile-pic", "width", "100px"],
@@ -61,6 +60,12 @@ export default function A1L1Q01Question() {
           ))}
         </tbody>
       </table>
+
+      <h3 className="text-lg font-semibold mb-2">React Component Rendering:</h3>
+      <p className="mb-4">
+        Create a <code>label</code> tag at the top right corner of the screen which display the current date and time in the format <code>DAY DATE MONTH YEAR, HH:MM:SS</code>. 
+        You can write your code in <code>App.jsx</code> or <code>App.vue</code> file. The label should be updated every second.
+      </p>
 
       <h3 className="text-lg font-semibold mb-2">Responsiveness Criteria:</h3>
       <p className="mb-4">

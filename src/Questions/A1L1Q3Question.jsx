@@ -8,7 +8,7 @@ export default function A1L1Q03Question() {
       <h2 className="text-xl font-semibold mb-2">Objective:</h2>
       <p className="mb-4">
         Build a simple responsive <strong>Product Grid Page</strong> using HTML and CSS.
-        Your page should present product cards in a 4-column grid layout,
+        Your page should present product cards in a 3-column grid layout,
         with consistent spacing, hover effects, and semantic HTML structure.
       </p>
 
@@ -18,7 +18,7 @@ export default function A1L1Q03Question() {
 
       <h2 className="text-xl font-semibold mb-2">Expected Output:</h2>
       <ul className="list-disc pl-6 space-y-2 mb-4">
-        <li>A 4-column grid of product cards</li>
+        <li>A 3-column grid of product cards</li>
         <li>Each card contains an image and a title (optional description/price)</li>
         <li>Fully responsive layout</li>
       </ul>
@@ -36,7 +36,7 @@ export default function A1L1Q03Question() {
         <tbody>
           {[
             ["Grid Layout", ".product-grid", "display", "grid"],
-            ["Grid Column Count", ".product-grid", "grid-template-columns", "gridrepeat(4, 1fr)"],
+            ["Grid Column Count", ".product-grid", "grid-template-columns", "repeat(3, 1fr)"],
             ["Grid Gap", ".product-grid", "gap", "20px"],
             ["Card Padding", ".product-card", "padding", "15px"],
             ["Card Border", ".product-card", "border", "1px solid grey"],
@@ -55,6 +55,13 @@ export default function A1L1Q03Question() {
           ))}
         </tbody>
       </table>
+
+      <h3 className="text-lg font-semibold mb-2">React Component Rendering:</h3>
+      <p className="mb-4">
+      Create a <code>label</code> in the top right corner of the screen to display the number of products/new arrivals in the grid. The label should update dynamically updated from the api call. 
+      You can write your code in <code>App.jsx</code> or <code>App.vue</code> file. 
+      Also the necessary CSS styles are already provided.
+      </p>
 
       <h3 className="text-lg font-semibold mb-2">Responsiveness Criteria:</h3>
       <p className="mb-4">
