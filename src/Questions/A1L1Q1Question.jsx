@@ -50,6 +50,7 @@ export default function A1L1Q01Question() {
             ["Profile Picture Style", ".profile-pic", "border-radius", "50%"],
             ["Domain Badge Size", ".gift-img", "width", "80px"],
             ["Page Background Image", ".backgroundpart", "background-size", "cover"],
+            ["Component - Label Position", ".datepart", "justify-content", "end"]
           ].map(([area, selector, property, value], idx) => (
             <tr key={idx}>
               <td className="border p-2">{area}</td>

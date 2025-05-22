@@ -73,7 +73,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8080/?folder=/home/coder/project'
+              src='http://192.168.253.134:8080/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -81,7 +81,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8081/?folder=/home/coder/project'
+              src='http://192.168.253.134:8081/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -96,7 +96,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5173' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5173' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -108,7 +108,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5174' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5174' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -131,7 +131,7 @@ export default function CodeEditor() {
           <div className="relative h-[650px]">
             {framework === "react" ? (
                 <iframe
-                src='http://localhost:8082/?folder=/home/coder/project'
+                src='http://192.168.253.134:8082/?folder=/home/coder/project'
                 width="100%"
                 height="100%"
                 style={{ border: "none" }}
@@ -139,7 +139,7 @@ export default function CodeEditor() {
                 />
             ) : framework === "vue" ? (
                 <iframe
-                src='http://localhost:8083/?folder=/home/coder/project'
+                src='http://192.168.253.134:8083/?folder=/home/coder/project'
                 width="100%"
                 height="100%"
                 style={{ border: "none" }}
@@ -154,7 +154,7 @@ export default function CodeEditor() {
             {
               framework === "react" ? (
                 <div className="absolute bottom-6 right-6 z-50">
-                  <Link to='http://localhost:5175' target="_blank" rel="noopener noreferrer">
+                  <Link to='http://192.168.253.134:5175' target="_blank" rel="noopener noreferrer">
                       <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                       hover:bg-blue-700 hover:shadow-xl
                                       transition duration-300 ease-in-out
@@ -166,7 +166,7 @@ export default function CodeEditor() {
                 </div>
               ) : framework === "vue" ? (
                 <div className="absolute bottom-6 right-6 z-50">
-                  <Link to='http://localhost:5176' target="_blank" rel="noopener noreferrer">
+                  <Link to='http://192.168.253.134:5176' target="_blank" rel="noopener noreferrer">
                       <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                       hover:bg-blue-700 hover:shadow-xl
                                       transition duration-300 ease-in-out
@@ -190,7 +190,7 @@ export default function CodeEditor() {
           <div className="relative h-[650px]">
             {framework === "react" ? (
                 <iframe
-                src='http://localhost:8084/?folder=/home/coder/project'
+                src='http://192.168.253.134:8084/?folder=/home/coder/project'
                 width="100%"
                 height="100%"
                 style={{ border: "none" }}
@@ -198,7 +198,7 @@ export default function CodeEditor() {
                 />
             ) : framework === "vue" ? (
                 <iframe
-                src='http://localhost:8085/?folder=/home/coder/project'
+                src='http://192.168.253.134:8085/?folder=/home/coder/project'
                 width="100%"
                 height="100%"
                 style={{ border: "none" }}
@@ -213,7 +213,7 @@ export default function CodeEditor() {
 {
               framework === "react" ? (
                 <div className="absolute bottom-6 right-6 z-50">
-                  <Link to='http://localhost:5177' target="_blank" rel="noopener noreferrer">
+                  <Link to='http://192.168.253.134:5177' target="_blank" rel="noopener noreferrer">
                       <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                       hover:bg-blue-700 hover:shadow-xl
                                       transition duration-300 ease-in-out
@@ -225,7 +225,7 @@ export default function CodeEditor() {
                 </div>
               ) : framework === "vue" ? (
                 <div className="absolute bottom-6 right-6 z-50">
-                  <Link to='http://localhost:5178' target="_blank" rel="noopener noreferrer">
+                  <Link to='http://192.168.253.134:5178' target="_blank" rel="noopener noreferrer">
                       <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                       hover:bg-blue-700 hover:shadow-xl
                                       transition duration-300 ease-in-out
@@ -248,7 +248,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8086/?folder=/home/coder/project'
+              src='http://192.168.253.134:8086/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -256,7 +256,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8087/?folder=/home/coder/project'
+              src='http://192.168.253.134:8087/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -271,7 +271,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5179' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5179' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -283,7 +283,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5180' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5180' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -306,7 +306,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8088/?folder=/home/coder/project'
+              src='http://192.168.253.134:8088/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -314,7 +314,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8089/?folder=/home/coder/project'
+              src='http://192.168.253.134:8089/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -329,7 +329,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5181' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5181' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -341,7 +341,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5182' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5182' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -364,7 +364,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8090/?folder=/home/coder/project'
+              src='http://192.168.253.134:8090/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -372,7 +372,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8091/?folder=/home/coder/project'
+              src='http://192.168.253.134:8091/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -387,7 +387,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5183' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5183' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -399,7 +399,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5184' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5184' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -422,7 +422,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8092/?folder=/home/coder/project'
+              src='http://192.168.253.134:8092/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -430,7 +430,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8093/?folder=/home/coder/project'
+              src='http://192.168.253.134:8093/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -445,7 +445,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5185' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5185' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -457,7 +457,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5186' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5186' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -480,7 +480,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8094/?folder=/home/coder/project'
+              src='http://192.168.253.134:8094/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -488,7 +488,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8095/?folder=/home/coder/project'
+              src='http://192.168.253.134:8095/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -503,7 +503,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5187' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5187' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -515,7 +515,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5188' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5188' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -538,7 +538,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8096/?folder=/home/coder/project'
+              src='http://192.168.253.134:8096/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -546,7 +546,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8097/?folder=/home/coder/project'
+              src='http://192.168.253.134:8097/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -561,7 +561,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5189' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5189' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -573,7 +573,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5190' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5190' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -596,7 +596,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8098/?folder=/home/coder/project'
+              src='http://192.168.253.134:8098/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -604,7 +604,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8099/?folder=/home/coder/project'
+              src='http://192.168.253.134:8099/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -619,7 +619,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5191' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5191' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -631,7 +631,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5192' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5192' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -654,7 +654,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8100/?folder=/home/coder/project'
+              src='http://192.168.253.134:8100/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -662,7 +662,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8101/?folder=/home/coder/project'
+              src='http://192.168.253.134:8101/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -677,7 +677,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5193' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5193' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -689,7 +689,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5194' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5194' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -712,7 +712,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8102/?folder=/home/coder/project'
+              src='http://192.168.253.134:8102/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -720,7 +720,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8103/?folder=/home/coder/project'
+              src='http://192.168.253.134:8103/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -735,7 +735,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5195' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5195' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -747,7 +747,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5196' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5196' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -770,7 +770,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8104/?folder=/home/coder/project'
+              src='http://192.168.253.134:8104/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -778,7 +778,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8105/?folder=/home/coder/project'
+              src='http://192.168.253.134:8105/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -793,7 +793,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5197' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5197' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -805,7 +805,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5198' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5198' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -828,7 +828,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8106/?folder=/home/coder/project'
+              src='http://192.168.253.134:8106/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -836,7 +836,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8107/?folder=/home/coder/project'
+              src='http://192.168.253.134:8107/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -851,7 +851,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5199' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5199' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -863,7 +863,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5200' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5200' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -886,7 +886,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8108/?folder=/home/coder/project'
+              src='http://192.168.253.134:8108/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -894,7 +894,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8109/?folder=/home/coder/project'
+              src='http://192.168.253.134:8109/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -909,7 +909,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5201' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5201' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -921,7 +921,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5202' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5202' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -944,7 +944,7 @@ export default function CodeEditor() {
         <div className="relative h-[650px]">
           {framework === "react" ? (
               <iframe
-              src='http://localhost:8110/?folder=/home/coder/project'
+              src='http://192.168.253.134:8110/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -952,7 +952,7 @@ export default function CodeEditor() {
               />
           ) : framework === "vue" ? (
               <iframe
-              src='http://localhost:8111/?folder=/home/coder/project'
+              src='http://192.168.253.134:8111/?folder=/home/coder/project'
               width="100%"
               height="100%"
               style={{ border: "none" }}
@@ -967,7 +967,7 @@ export default function CodeEditor() {
 {
             framework === "react" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5203' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5203' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out
@@ -979,7 +979,7 @@ export default function CodeEditor() {
               </div>
             ) : framework === "vue" ? (
               <div className="absolute bottom-6 right-6 z-50">
-                <Link to='http://localhost:5204' target="_blank" rel="noopener noreferrer">
+                <Link to='http://192.168.253.134:5204' target="_blank" rel="noopener noreferrer">
                     <button className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg
                                     hover:bg-blue-700 hover:shadow-xl
                                     transition duration-300 ease-in-out

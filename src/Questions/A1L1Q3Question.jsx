@@ -45,6 +45,7 @@ export default function A1L1Q03Question() {
             ["Container Padding", ".product-container", "padding", "30px 20px"],
             ["Title Alignment", ".product-title", "text-align", "center"],
             ["Card Hover Transform", ".product-card", "transform", "translateY(-5px)"],
+            ["Component - Label Position", ".productcountpart", "justify-content", "end"]
           ].map(([area, selector, property, value], idx) => (
             <tr key={idx}>
               <td className="border p-2">{area}</td>

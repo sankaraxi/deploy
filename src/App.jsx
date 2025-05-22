@@ -7,6 +7,8 @@ import Menu from './Navbar/Menu';
 import QuestionsMain from './Questions/QuestionsMain';
 import CodeMenu from './Navbar/CodeMenu';
 import CodeEditor from './CodeEditors/CodeEditor';
+import NetworkAutoCloser from './utils/NetworkDisconnect';
+import Timer from './Navbar/Timer';
 
 // import Login from './components/Login/Login';
 // import Menu from './components/Menu/Menu';
@@ -48,11 +50,12 @@ function App() {
    <>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={[<Login/>]}/>
         <Route path='/guidelines/:id/:empNo' element={[<Menu/>,<GuidelinesPage/>]}/>
         
         <Route path='/question/:encrypted' element={[<Menu/>,<QuestionsMain/>]}/>
         <Route path='/workspace/:id/:framework' element={[<CodeMenu/>,<CodeEditor />]}/>
+        <Route path='/test' element={[<Menu/>,<Timer/>]}/>
         {/* <Route path='/question_creator/:id' element={[<Menu/>,<Corepage/>]}/> */}
         {/* <Route path='/' element={<Download/>}/> */}
         {/* <Route path='/report/:id' element={[<Menuuser/>,<Reportfile/>]}/>

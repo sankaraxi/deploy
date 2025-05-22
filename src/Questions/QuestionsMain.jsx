@@ -59,7 +59,7 @@ export default function QuestionsMain() {
 
     // const runScript = async () => {
     //     try {
-    //         const response = await fetch('http://localhost:5001/api/run-script', {
+    //         const response = await fetch('http://192.168.253.134:5001/api/run-script', {
     //             method: 'POST',
     //             headers: {
     //                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function QuestionsMain() {
 
     // const handleStartAssessment = async () => {
     //     try {
-    //       const res = await fetch('http://localhost:5001/api/run-script', { method: 'POST' });
+    //       const res = await fetch('http://192.168.253.134:5001/api/run-script', { method: 'POST' });
     //       const data = await res.json();
     //       console.log('Script output:', data.stdout);
     //       alert('Assessment started!');
@@ -89,8 +89,9 @@ export default function QuestionsMain() {
     //       alert('Something went wrong xstarting the assessment.');
     //     }
     //   };
+    
       const handleStartAssessmentII = async (selectedFramework) => {
-        let countdown = 30;
+        let countdown = 20;
         setRedirectCountdown(countdown); // Show "Redirecting in 10 seconds..."
     
         const interval = setInterval(() => {
@@ -104,7 +105,7 @@ export default function QuestionsMain() {
         }, 1000);
 
         try {
-            const res = await fetch('http://localhost:5001/api/run-script', 
+            const res = await fetch('http://192.168.253.134:5001/api/run-script', 
                 {
                     method: 'POST',
                     headers: {

@@ -16,8 +16,6 @@ export default function CodeMenu() {
     const [showGuidelines, setShowGuidelines] = useState(false);
     const [notRunning, setNotRunning] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
-    const [timerPaused, setTimerPaused] = useState(false);
     const userId = sessionStorage.getItem("userId");
     const userRole = sessionStorage.getItem("userRole");
     const userQuestion = sessionStorage.getItem("userQues");
@@ -26,7 +24,29 @@ export default function CodeMenu() {
 
 
     console.log(notRunning);
+
+    // useEffect(() => {
+    //     if (logData?.log_status === 2) {
+    //         const newTimeLeft = Math.floor(logData.closing_time_ms / 1000);
+    //         setTimeLeft(newTimeLeft);
+    //         console.log("Time left from logData:", newTimeLeft);
+    //     }   
+    // }, [logData]);
+
     
+    // useEffect(() => {
+    //     if (logData?.log_status === 2) {
+    //         const newTimeLeft = Math.floor(logData.closing_time_ms / 1000);
+    //         setTimeLeft(newTimeLeft);
+    //         console.log("Time left from logData:", newTimeLeft);
+    //     }  
+    //     else{
+    //         setTimeLeft(1800)
+    //     }
+
+    // },[logData]);
+    
+
     useEffect(() => {
         const fetchUserLog = async () => {
             try {
@@ -75,50 +95,6 @@ export default function CodeMenu() {
         }
     }, [isModalClosing]);
     
-    // Track online/offline status
-    useEffect(() => {
-        const handleOnline = () => {
-            console.log("Network connection restored");
-            setIsOnline(true);
-            setTimerPaused(false);
-            
-            // If we have a timestamp of when we went offline, calculate the elapsed time
-            const offlineTime = sessionStorage.getItem("wentOfflineAt");
-            if (offlineTime) {
-                const timeElapsed = Math.floor((Date.now() - parseInt(offlineTime)) / 1000);
-                console.log(`Network was offline for ${timeElapsed} seconds`);
-                
-                // Adjust the exam end time to account for the offline period
-                const savedEndTime = sessionStorage.getItem("examEndTime");
-                if (savedEndTime) {
-                    const newEndTime = new Date(new Date(savedEndTime).getTime() + (timeElapsed * 1000));
-                    sessionStorage.setItem("examEndTime", newEndTime.toISOString());
-                    console.log("Exam end time adjusted to account for offline period");
-                }
-                
-                // Clear the offline timestamp
-                sessionStorage.removeItem("wentOfflineAt");
-            }
-        };
-        
-        const handleOffline = () => {
-            console.log("Network connection lost");
-            setIsOnline(false);
-            setTimerPaused(true);
-            
-            // Store the timestamp when we went offline
-            sessionStorage.setItem("wentOfflineAt", Date.now().toString());
-        };
-        
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-        
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-        };
-    }, []);
-
 useEffect(() => {
     // Generate sessionId if not present
     if (!sessionStorage.getItem("sessionId")) {
@@ -180,10 +156,8 @@ useEffect(() => {
       }
     }
 
-    // Update timer every second, but only if we're online and timer isn't paused
+    // Update timer every second
     const updateTimer = () => {
-      if (timerPaused || !isOnline) return;
-      
       const endTime = sessionStorage.getItem("examEndTime");
       if (!endTime) {
         setTimeLeft(0);
@@ -195,7 +169,7 @@ useEffect(() => {
 
     const intervalId = setInterval(updateTimer, 1000);
     return () => clearInterval(intervalId);
-  }, [logData, isOnline, timerPaused]);
+  }, [logData]);
 
 
   useEffect(() => {
@@ -215,158 +189,156 @@ useEffect(() => {
   }, [timeLeft]);
 
       
-    useEffect(() => {
-    if (timeLeft === 0 || logoutClick === true) {
-        const handleTimeoutSubmit = async () => {
-            if(userRole === '3' || userRole === '4'){
-                if(userQuestion === 'a1l1q3'){
-                    try {
-                        const response = await fetch('http://192.168.253.134:5001/api/run-Assesment', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                        ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
+      useEffect(() => {
+        if (timeLeft === 0 || logoutClick === true) {
+            const handleTimeoutSubmit = async () => {
+              if(userRole === '3' || userRole === '4'){
+                  if(userQuestion === 'a1l1q3'){
+                      try {
+                          const response = await fetch('http://192.168.253.134:5001/api/run-Assesment', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
                         }
-                        
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
+                  }else if(userQuestion === 'a1l1q2'){
+                      try {
+                          const response = await fetch('http://192.168.253.134:5001/api/run-Assesment-2', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
                         }
-                    }
-                } else if(userQuestion === 'a1l1q2'){
-                    try {
-                        const response = await fetch('http://192.168.253.134:5001/api/run-Assesment-2', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                        ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
+                  }else if(userQuestion === 'a1l1q1'){
+                      try {
+                          const response = await fetch('http://192.168.253.134:5001/api/run-Assesment-1', {
+                              method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  userId:userId, framework:framework
+                              }),
+                          });
+                          const data = await response.json();
+                          // console.log('Script output:', data);
+                          if (
+                              data.error &&
+                              data.error.includes("Frontend application is not running on port")
+                            ) {
+                              console.log("Error running script:", data.error);
+                              setNotRunning(!notRunning);
+                            }
+                            
+                  
+                      setDetailedResults(data.detailedResults)
+                      } catch (err) {
+                          console.error('Error running script:', err);
+                          setNotRunning(!notRunning);
+                          if (err.response && err.response.data?.error) {
+                          //   setError(err.response.data.error);
+                          console.error('Error running script:', err.response.data.error);
+                          } else {
+                              console.error('Error running script:', err);
+                          //   setError('Something went wrong.');
+                          }
                         }
-                        
-
-                        
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
-                        }
-                    }
-                } else if(userQuestion === 'a1l1q1'){
-                    try {
-                        const response = await fetch('http://192.168.253.134:5001/api/run-Assesment-1', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                userId:userId, framework:framework
-                            }),
-                        });
-                        const data = await response.json();
-                        // console.log('Script output:', data);
-                        if (
-                            data.error &&
-                            data.error.includes("Frontend application is not running on port")
-                        ) {
-                            console.log("Error running script:", data.error);
-                            setNotRunning(!notRunning);
-                        }
-                        
-                
-                    setDetailedResults(data.detailedResults)
-                    } catch (err) {
-                        console.error('Error running script:', err);
-                        setNotRunning(!notRunning);
-                        if (err.response && err.response.data?.error) {
-                        //   setError(err.response.data.error);
-                        console.error('Error running script:', err.response.data.error);
-                        } else {
-                            console.error('Error running script:', err);
-                        //   setError('Something went wrong.');
-                        }
-                    }
+                  }
+              }
+            };
+        
+            const handleTimeoutCleanup = async () => {
+              try {
+                  const response = await fetch('http://192.168.253.134:5001/api/cleanup-docker-2', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      userId: userId, // Ensure userId is defined in the scope
+                    }),
+                  });
+              
+                  // Check if the response is successful
+                  if (!response.ok) {
+                    throw new Error(`Server responded with status ${response.status}`);
+                  }
+              
+                  // Parse the response
+                  const data = await response.json();
+                  if (data.status !== 'success') {
+                    throw new Error(data.error || 'Docker cleanup failed');
+                  }
+              
+                  // Clear sessionStorage and redirect
+                  sessionStorage.removeItem('userRole');
+                  sessionStorage.removeItem('examEndTime');
+                  window.location.href = '/'; // Redirect to login page
+                } catch (error) {
+                  console.error('Failed to clean up Docker:', error);
+                  // Proceed with logout even if the server request fails
+                  sessionStorage.removeItem('userRole');
+                  sessionStorage.removeItem('examEndTime');
+                  window.location.href = '/'; // Redirect to login page
                 }
-            }
-        };
-    
-        const handleTimeoutCleanup = async () => {
-            try {
-                const response = await fetch('http://192.168.253.134:5001/api/cleanup-docker-2', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: userId, // Ensure userId is defined in the scope
-                }),
-                });
-            
-                // Check if the response is successful
-                if (!response.ok) {
-                throw new Error(`Server responded with status ${response.status}`);
-                }
-            
-                // Parse the response
-                const data = await response.json();
-                if (data.status !== 'success') {
-                throw new Error(data.error || 'Docker cleanup failed');
-                }
-            
-                // Clear sessionStorage and redirect
-                sessionStorage.removeItem('userRole');
-                sessionStorage.removeItem('examEndTime');
-                window.location.href = '/'; // Redirect to login page
-            } catch (error) {
-                console.error('Failed to clean up Docker:', error);
-                // Proceed with logout even if the server request fails
-                sessionStorage.removeItem('userRole');
-                sessionStorage.removeItem('examEndTime');
-                window.location.href = '/'; // Redirect to login page
-            }
-        };
-    
-        handleTimeoutSubmit();
-        handleTimeoutCleanup();
-        }
-    }, [timeLeft, logoutClick]);
+            };
+        
+            handleTimeoutSubmit();
+            handleTimeoutCleanup();
+          }
+      }, [timeLeft, logoutClick]);
     
 
     const hours = Math.floor(timeLeft / 3600);
@@ -379,41 +351,41 @@ useEffect(() => {
         setIsGradeModalOpen(true);
     };
 
-    const handleLogout = async () => {
-        try {
-        const response = await fetch('http://192.168.253.134:5001/api/cleanup-docker-2', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            userId: userId, // Ensure userId is defined in the scope
-            }),
-        });
-    
-        // Check if the response is successful
-        if (!response.ok) {
-            throw new Error(`Server responded with status ${response.status}`);
-        }
-    
-        // Parse the response
-        const data = await response.json();
-        if (data.status !== 'success') {
-            throw new Error(data.error || 'Docker cleanup failed');
-        }
-    
-        // Clear sessionStorage and redirect
-        sessionStorage.removeItem('userRole');
-        sessionStorage.removeItem('examEndTime');
-        window.location.href = '/'; // Redirect to login page
-        } catch (error) {
-        console.error('Failed to clean up Docker:', error);
-        // Proceed with logout even if the server request fails
-        sessionStorage.removeItem('userRole');
-        sessionStorage.removeItem('examEndTime');
-        window.location.href = '/'; // Redirect to login page
-        }
-    };
+const handleLogout = async () => {
+    try {
+      const response = await fetch('http://192.168.253.134:5001/api/cleanup-docker-2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: userId, // Ensure userId is defined in the scope
+        }),
+      });
+  
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+  
+      // Parse the response
+      const data = await response.json();
+      if (data.status !== 'success') {
+        throw new Error(data.error || 'Docker cleanup failed');
+      }
+  
+      // Clear sessionStorage and redirect
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('examEndTime');
+      window.location.href = '/'; // Redirect to login page
+    } catch (error) {
+      console.error('Failed to clean up Docker:', error);
+      // Proceed with logout even if the server request fails
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('examEndTime');
+      window.location.href = '/'; // Redirect to login page
+    }
+  };
 
     const closeGradeModal = () => {
         setIsModalClosing(true);
@@ -635,13 +607,6 @@ useEffect(() => {
                             </div>
                         </div>
                     </div>
-                    
-                    {/* Network status indicator */}
-                    {!isOnline && (
-                        <div className="bg-red-500 text-white px-3 py-1 rounded-lg animate-pulse">
-                            Offline - Timer Paused
-                        </div>
-                    )}
 
                     <button 
                         className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200 font-medium shadow-md"
@@ -692,13 +657,6 @@ useEffect(() => {
                             </div>
                         </div>
                     </div>
-                    
-                    {/* Network status indicator for mobile */}
-                    {!isOnline && (
-                        <div className="bg-red-500 text-white px-3 py-2 rounded-lg text-center animate-pulse">
-                            Offline - Timer Paused
-                        </div>
-                    )}
                 </div>
             )}
 
@@ -720,6 +678,8 @@ useEffect(() => {
     <GuidelinesSideBar />
   </div>
 )}
+
+
 
 {isGradeModalOpen && (
     <div 

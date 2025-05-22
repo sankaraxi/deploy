@@ -16,7 +16,7 @@ export default function Login(){
             alert("Please Enter the Password")
         }
         else{
-            axios.post("http://localhost:5001/api/login",key)
+            axios.post("http://192.168.253.134:5001/api/login",key)
             .then((res)=>{
                 sessionStorage.setItem("userId", res.data.id)
                 sessionStorage.setItem("userRole", res.data.role)
@@ -50,7 +50,7 @@ export default function Login(){
                 else if(res.data.status==="both_are_invalid"){
                     alert("Please check your username")
                 }else if(res.data.status==="already_logged_in"){
-                    alert("You are already logged in")
+                    alert("Already logged in and assessement Completed")
                 }else{
                     alert("Please Contact Admin")
                 }

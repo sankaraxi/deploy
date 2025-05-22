@@ -120,6 +120,12 @@ export default function A1L1Q02Question() {
             <td className="border p-2">border-radius</td>
             <td className="border p-2">12px</td>
           </tr>
+          <tr>
+            <td className="border p-2">Component - Label Position</td>
+            <td className="border p-2">.endbox</td>
+            <td className="border p-2">justify-content</td>
+            <td className="border p-2">center</td>
+          </tr>
         </tbody>
       </table>
 

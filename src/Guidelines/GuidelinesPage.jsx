@@ -5,13 +5,18 @@ import EnvironmentSetup from './EnvironmentSetup.png';
 import configuration from './configuration.png';
 import ribbon from './ribbon.png';
 import guide from './guide_18823709.png';
+import { use } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+
 
 export default function GuidelinesPage() {
-  const { id } = useParams();
+  const { id,empNo } = useParams();
   const dockerPort = sessionStorage.getItem("dockerPort");
   const outputPort = sessionStorage.getItem("outputPort");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [employeeNo, setEmployeeNo] = useState('');
+  const [logData, setLogData ] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     employeeNo: ''
@@ -19,6 +24,30 @@ export default function GuidelinesPage() {
 
   const [error, setError] = useState('');  
 
+    useEffect(() => {
+        const fetchUserLog = async () => {
+            try {
+            const response = await axios.get(`http://192.168.253.134:5001/api/time-left/${id}`);
+            console.log('response', response);
+            setLogData(response.data);
+
+            } catch (err) {
+            setLogData(null);
+            console.log('User not found or server error');
+            console.error(err);
+            }
+        };
+        fetchUserLog();
+
+    }, [id]);
+
+    console.log('logData', logData);
+
+    useEffect(() => {
+      if(logData?.log_status === 0){
+        setIsModalOpen(true);
+      }
+    }, [logData]);
   
 
 
@@ -41,7 +70,7 @@ export default function GuidelinesPage() {
         setEmployeeNo(formData.employeeNo);
       }
       try {
-        const response = await fetch('http://localhost:5001/api/candidate', {
+        const response = await fetch('http://192.168.253.134:5001/api/candidate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +97,7 @@ export default function GuidelinesPage() {
 
     const paramData = {
       id: id,
-      empNo: employeeNo,
+      empNo: empNo,
       dockerPort: dockerPort,
       outputPort: outputPort
     }
